@@ -1,0 +1,46 @@
+{
+  "name": "grapqhl-typescript-starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build_dev": "webpack --config webpack.development.js",
+    "build_prod": "webpack --config webpack.production.js",
+    "build_common": "webpack --config webpack.common.js",
+    "start": "env-cmd -f ./env_config/dev.env node dist/server",
+    "start:prod": "env-cmd -f ./env_config/prod.env node --require dotenv/config dist/server"
+  },
+  "keywords": [],
+  "author": "Olex",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^2.9.7",
+    "apollo-server-cache-memcached": "^0.6.3",
+    "deepmerge": "^4.2.2",
+    "env-cmd": "^10.0.1",
+    "graphql": "^14.5.8",
+    "graphql-type-json": "^0.3.1",
+    "graphql-type-regexp": "^0.1.2",
+    "mongodb": "^3.3.3",
+    "mongoose": "^5.7.8"
+  },
+  "devDependencies": {
+    "@webpack-cli/init": "^0.2.2",
+    "@types/mongodb": "^3.3.13",
+    "@types/mongoose": "^5.5.34",
+    "@types/webpack-env": "^1.14.1",
+    "@typescript-eslint/eslint-plugin": "^2.12.0",
+    "@typescript-eslint/parser": "^2.12.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "dotenv": "^8.2.0",
+    "eslint": "^6.7.2",
+    "eslint-loader": "^3.0.3",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.6.4",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-merge": "^4.2.2",
+    "webpack-node-externals": "^1.7.2"
+  }
+}

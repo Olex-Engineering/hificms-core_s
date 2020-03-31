@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs", 
+    "lib": [ "dom","es6" ],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "removeComments": true
+  },
+  "exclude": [ "node_modules" ],
+  "include": [ "src/**/*.ts", "src/config/environment.ts" ]
+}
