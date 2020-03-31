@@ -2,7 +2,7 @@ import { DocumentNode } from 'graphql';
 import { DocumentNodeMap, IResolverFuncMap, IResolverFunc } from './core.interface';
 
 export interface IModule {
-    init(): IModuleExport;
+    init(): void;
     setSchema(schemaToSet: DocumentNodeMap): void;
     setResolvers(resolversToSet: IModuleResolvers): void;
     schema:  DocumentNode[];

@@ -1,13 +1,16 @@
 import rootTypeDefs from './type-defs/root-type-defs';
-import Helpers from './utils/helpers';
 // custom modules
-import { authSchema } from '../auth/auth';
+import { DocumentNode } from 'graphql';
 
-// add you custom schemes here
-const typeDefs = Helpers.mergeSchemas(
-    rootTypeDefs, 
-    [
-        authSchema,
-    ]);
 
-export default typeDefs;
+export default class TypeDefsStorage {
+    private static typeDefs: DocumentNode[] = [ ...rootTypeDefs ]
+
+    public static addTypeDefs(schema: DocumentNode[]): void {
+        this.typeDefs.push(...schema);
+    }
+
+    public static getTypeDefs(): DocumentNode[] {
+        return this.typeDefs;
+    }
+}

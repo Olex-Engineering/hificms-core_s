@@ -1,12 +1,18 @@
 import * as merge from 'deepmerge';
 import { IResolvers } from 'graphql-tools';
 import rootResolvers from './resolvers/root-resolvers';
-// custom modules
-import { authResolvers } from '../auth/auth';
+import { IModuleResolvers } from './interfaces/module.interface';
 
-const resolvers: IResolvers = merge.all([
-    rootResolvers, 
-    authResolvers
-]) as IResolvers;
+export default class ResolversStorage {
+    private static resolvers: IResolvers[] = [
+        rootResolvers
+    ]
 
-export default resolvers; 
+    public static addResolver(resolver: IModuleResolvers): void {
+        this.resolvers.push(resolver as IResolvers);
+    }
+
+    public static getResolvers(): IResolvers {
+        return merge.all(this.resolvers) as IResolvers;
+    }
+}

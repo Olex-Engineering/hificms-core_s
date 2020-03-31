@@ -1,7 +1,9 @@
 import * as merge from 'deepmerge';
 import { DocumentNodeMap, IResolversMap } from '../interfaces/core.interface';
 import { DocumentNode } from 'graphql';
-import { IModule, IModuleResolvers, IModuleExport } from '../interfaces/module.interface';
+import { IModule, IModuleResolvers } from '../interfaces/module.interface';
+import TypeDefsStorage from '../type-defs';
+import ResolversStorage from '../resolvers';
 
 export default abstract class Module implements IModule {
     protected schemaObject: DocumentNodeMap = null;
@@ -15,11 +17,9 @@ export default abstract class Module implements IModule {
         this.resolversObject = merge(this.resolversObject, resolversToMerge);
     }
 
-    public init(): IModuleExport {
-        return {
-            schema: this.schema,
-            resolvers: this.resolvers,
-        };
+    public init(): void {
+        TypeDefsStorage.addTypeDefs(this.schema);
+        ResolversStorage.addResolver(this.resolvers);
     }
 
     public setSchema(schemaToSet: DocumentNodeMap) {

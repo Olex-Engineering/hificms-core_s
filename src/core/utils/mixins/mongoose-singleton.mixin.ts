@@ -1,13 +1,12 @@
 import { Schema, model, Model, Document } from 'mongoose';
-import { IUserDocument } from '../../../auth/interfaces/user.interface';
 
 export default function MongooseSingleton<T extends {new (...args: any[]): any;}>(originalConstructor: T): T & {getMongooseModel<U extends Document>(): Model<U>} {
     return class extends originalConstructor {
         private static mongooseModel;
 
-        static init() { 
+        private static init() { 
             const schema: Schema = new originalConstructor().schema;
-            this.mongooseModel = model<IUserDocument>(originalConstructor.name, schema);
+            this.mongooseModel = model<Document>(originalConstructor.name, schema);
             return this.mongooseModel;
         }
 
