@@ -1,5 +1,5 @@
 import * as merge from 'deepmerge';
-import { DocumentNodeMap, IResolversMap } from '../interfaces/core.interface';
+import { DocumentNodeMap } from '../interfaces/core.interface';
 import { DocumentNode } from 'graphql';
 import { IModule, IModuleResolvers } from '../interfaces/module.interface';
 import TypeDefsStorage from '../type-defs';
@@ -9,31 +9,56 @@ export default abstract class Module implements IModule {
     protected schemaObject: DocumentNodeMap = null;
     protected resolversObject: IModuleResolvers = null;
 
-    public mergeSchemas(schemaToMerge: DocumentNodeMap) {
-        this.schemaObject = merge(this.schemaObject, schemaToMerge);
-    }
-
-    public mergeResolvers(resolversToMerge: IResolversMap) {
-        this.resolversObject = merge(this.resolversObject, resolversToMerge);
-    }
-
+    /**
+     * Set MODULE resolvers and type definitions to core storages
+     */
     public init(): void {
         TypeDefsStorage.addTypeDefs(this.schema);
         ResolversStorage.addResolver(this.resolvers);
     }
 
-    public setSchema(schemaToSet: DocumentNodeMap) {
+    /**
+     * Merge custom module type definitions with current
+     * @param schemaToMerge - custom module type definitions
+     */
+    public mergeSchemas(schemaToMerge: DocumentNodeMap): DocumentNodeMap {
+        return merge(this.schemaObject, schemaToMerge);
+    }
+
+    /**
+     * Merge custom module resolvers and merge it with current
+     * @param resolversToMerge - custom module resolvers 
+     */
+    public mergeResolvers(resolversToMerge: IModuleResolvers): IModuleResolvers {
+        return merge(this.resolversObject, resolversToMerge);
+    }
+
+    /**
+     * Set type definitions as MODULE final shema object
+     * @param schemaToSet - type definitions to set
+     */
+    public setSchema(schemaToSet: DocumentNodeMap): void {
         this.schemaObject = schemaToSet;
     }
 
-    public setResolvers(resolversToSet: IModuleResolvers) {
+    /**
+     * Set resolvers as MODULE final resolvers object
+     * @param resolversToSet - module resolvers object that needs to be set
+     */
+    public setResolvers(resolversToSet: IModuleResolvers): void {
         this.resolversObject = resolversToSet;
     }
 
+    /**
+     * Get MODULE final type definitions array
+     */
     public get schema(): DocumentNode[] {
         return Object.values(this.schemaObject);
     }
     
+    /**
+     * Get MODULE final resolvers object
+     */
     public get resolvers(): IModuleResolvers {
         return this.resolversObject;
     }

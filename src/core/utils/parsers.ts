@@ -1,6 +1,10 @@
 import { IMongoFIlterArgs, IMongoFilterInput, IMongoSortInput, IListOptionsInput, IListOptionsParsedInput } from '../interfaces/parsers.interface';
 
 export default class Parsers {
+    /**
+     * Map Graphql input to valid mongodb query
+     * @param queryData - Graphql query input
+     */
     private static getFilterOperators(queryData: IMongoFIlterArgs): {[key: string]: object} {
         const validOperators: {[key: string]: object} = {};
     
@@ -32,6 +36,11 @@ export default class Parsers {
         return validOperators;
     }
 
+    /**
+     * Setted parsed query to object with key 
+     * or without (if it is global operator)
+     * @param queryDataArray - graphql query input
+     */
     public static parseMongoDBQuery(queryDataArray: IMongoFilterInput[]): {[key: string]: object} {
         let validQueryForMongo: {[key: string]: object} = {};
 
@@ -47,12 +56,20 @@ export default class Parsers {
         return validQueryForMongo;
     }
 
+    /**
+     * Map graphql input to valid mongoose sort options
+     * @param sortData - Grapql input
+     */
     public static parseMongoDBSort(sortData: IMongoSortInput) {
         const validSortData = {};
         validSortData[sortData.field] = sortData.criteria;
         return validSortData;
     }
 
+    /**
+     * Parse list options input to valid mongodb query options
+     * @param filterInput - Graphql list filter input
+     */
     public static parseListOptionsInput(filterInput: IListOptionsInput): IListOptionsParsedInput {
         if (!filterInput) {
             return {
@@ -73,6 +90,11 @@ export default class Parsers {
         return validListFilterInput;
     }
 
+    /**
+     * Map graphql info to mongoose projection
+     * Projection - fields thats client fetch
+     * @param info - graphql info
+     */
     public static mapInfoToProjection(info: any) {
         return info.operation.selectionSet.selections[0]
             .selectionSet.selections.map(selection => selection.name.value);
