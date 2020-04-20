@@ -24,6 +24,7 @@
             "error",
             4
         ],
+        "@typescript-eslint/preger-optiona-chain": "off",
         "@typescript-eslint/no-unused-vars": ["error", {
             "vars": "all",
             "args": "none",
