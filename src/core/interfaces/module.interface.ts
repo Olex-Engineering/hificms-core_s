@@ -10,15 +10,16 @@ export interface IModule {
 }
 
 export interface IModuleOptions {
-    shemas: DocumentNodeMap,
+    mergeFrom?: IModule;
+    shemas: DocumentNodeMap;
     resolvers: IModuleResolvers;
 }
 
 export interface IModuleResolvers {
-    Query: IResolverModule[];
-    Mutation: IResolverModule[];
-    Subscription: IResolverModule[];
-    [key: string]: IResolverModule[];
+    Query: IResolverModule[] | IResolverFuncMap;
+    Mutation: IResolverModule[] | IResolverFuncMap;
+    Subscription: IResolverModule[] | IResolverFuncMap;
+    [key: string]: IResolverModule[] | IResolverFuncMap;
 }
 
 export interface IModuleExport {
@@ -28,5 +29,6 @@ export interface IModuleExport {
 
 export interface IResolverModule {
     resolvers: IResolverFuncMap;
-    resolver:  {[key: string]: IResolverFunc<any, any>};
+    setResolver(key: string, resolver: IResolverFunc<any, any>): void;
+    mergeResolvers(IResolverFuncMap): void;
 }
