@@ -3,11 +3,11 @@ import { environment } from './environment';
 import TypeDefsStorage from './core/type-defs';
 import ResolversStorage from './core/resolvers';
 import { InMemoryLRUCache } from 'apollo-server-caching';
-import Modules from './core/modules';
+import Modules from './core/modules/modules';
 const mongoose = require('mongoose'); 
  
 // Initialize modules
-Modules.init();
+new Modules();
 
 let server;
 
