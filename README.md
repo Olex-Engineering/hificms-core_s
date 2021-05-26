@@ -6,4 +6,4 @@
 npm start
 ```
 
-to start graphQL server
+to start graphQL server wtih DEMO
