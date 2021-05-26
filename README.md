@@ -1,15 +1,9 @@
-# 🚀 Welcome to your new awesome project!
+# 🚀 GraphQL starter with modularity!
 
-This project has been created using **webpack scaffold**, you can now run
-
-```
-npm run build
-```
-
-or
+Allows you to quickly create new projects on graphKL and add new functionality using inheritance
 
 ```
-yarn build
+npm start
 ```
 
-to bundle your application
+to start graphQL server
