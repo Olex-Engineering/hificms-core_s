@@ -1,6 +1,6 @@
 # 🚀 GraphQL starter with modularity!
 
-Allows you to quickly create new projects on graphKL and add new functionality using inheritance
+## Allows you to quickly create new projects on graphQL and add new functionality using inheritance
 
 ```
 npm start
