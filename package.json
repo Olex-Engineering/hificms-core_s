@@ -15,7 +15,7 @@
   "author": "Olex",
   "license": "ISC",
   "dependencies": {
-    "apollo-server": "^2.11.0",
+    "apollo-server": "^2.25.4",
     "apollo-server-cache-memcached": "^0.6.4",
     "deepmerge": "^4.2.2",
     "env-cmd": "^10.0.1",
